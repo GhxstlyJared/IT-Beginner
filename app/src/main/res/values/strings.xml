@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">IT-Beginner</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Monet4ik</string>
+    <string name="nav_header_subtitle">bi4iska@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="action_favourites">Избранное</string>
+    <string name="action_signout">Выйти из аккаунта</string>
+
+    <string name="menu_lesson">Уроки</string>
+    <string name="menu_test">Тесты</string>
+    <string name="menu_guide">Руководство</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_info">О приложении</string>
+    <string name="menu_exit">Выйти из аккаунта</string>
+
+    <!-- strings for Firebase connecting    -->
+    <string name="web_client_id">204278373755-nll2i8mchfq2tut84b0hntvad20eau1h.apps.googleusercontent.com</string>
+</resources>

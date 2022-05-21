@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_lesson">
+
+    <fragment
+        android:id="@+id/nav_lesson"
+        android:name="com.example.diplom2022.views.fragments.HomeFragment"
+        android:label="@string/menu_lesson"
+        tools:layout="@layout/fragment_lesson" />
+
+    <fragment
+        android:id="@+id/nav_test"
+        android:name="com.example.diplom2022.views.fragments.TestFragment"
+        android:label="@string/menu_test"
+        tools:layout="@layout/fragment_test" />
+
+    <fragment
+        android:id="@+id/nav_guide"
+        android:name="com.example.diplom2022.views.fragments.GalleryFragment"
+        android:label="@string/menu_guide"
+        tools:layout="@layout/fragment_guide" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.diplom2022.views.fragments.SlideshowFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/nav_info"
+        android:name="com.example.diplom2022.views.fragments.InfoFragment"
+        android:label="@string/menu_info"
+        tools:layout="@layout/fragment_info" />
+
+</navigation>

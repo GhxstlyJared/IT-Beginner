@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigationView"
+    tools:showIn="navigation_view">
+
+    <item android:title="Меню">
+    <menu android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_lesson"
+            android:icon="@drawable/ic_lesson"
+            android:title="@string/menu_lesson" />
+        <item
+            android:id="@+id/nav_test"
+            android:icon="@drawable/ic_test"
+            android:title="@string/menu_test" />
+        <item
+            android:id="@+id/nav_guide"
+            android:icon="@drawable/ic_guide"
+            android:title="@string/menu_guide" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/menu_settings" />
+        <item
+            android:id="@+id/nav_info"
+            android:icon="@drawable/ic_info"
+            android:title="@string/menu_info" />
+    </menu>
+    </item>
+    <item android:title="Аккаунт">
+        <menu android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_exit"
+                android:title="@string/menu_exit" />
+        </menu>
+    </item>
+</menu>
