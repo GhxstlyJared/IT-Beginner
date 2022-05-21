@@ -1,2 +1,2 @@
 # IT-Beginner
-Application-teacher for immersion in the Aichi world for beginners
+Application-teacher for immersion in the IT-world for beginners
