@@ -17,7 +17,7 @@
             android:label="@string/title_activity_menu"
             android:theme="@style/Theme.Diplom2022.NoActionBar" />
         <activity
-            android:name=".views.activities.MainActivity"
+            android:name=".views.activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

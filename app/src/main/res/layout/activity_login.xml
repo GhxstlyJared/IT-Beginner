@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".views.activities.MainActivity">
+    tools:context=".views.activities.LoginActivity">
 
     <ImageView
         android:id="@+id/img_View"
@@ -24,7 +24,7 @@
         android:layout_marginTop="4dp"
         android:backgroundTint="@color/Orange"
         android:fontFamily="@font/inter"
-        android:text="Зарегистрироваться"
+        android:text="@string/register_login_text"
         android:textStyle="bold|italic"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +41,7 @@
         android:fontFamily="@font/inter"
         android:text="Google Sign In"
         android:textStyle="bold|italic"
+        android:onClick="signIn"
         app:icon="@drawable/googleg_standard_color_18"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +52,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Войдите в свой аккаунт Google"
+        android:text="@string/info_login_text"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"

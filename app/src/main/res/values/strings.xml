@@ -10,6 +10,9 @@
     <string name="action_favourites">Избранное</string>
     <string name="action_signout">Выйти из аккаунта</string>
 
+    <string name="register_login_text">Зарегистрироваться</string>
+    <string name="info_login_text">Войдите в свой аккаунт Google</string>
+
     <string name="menu_lesson">Уроки</string>
     <string name="menu_test">Тесты</string>
     <string name="menu_guide">Руководство</string>
@@ -17,6 +20,12 @@
     <string name="menu_info">О приложении</string>
     <string name="menu_exit">Выйти из аккаунта</string>
 
+    <string name="version_title">Версия\t</string>
+    <string name="corp_app_text">Корпорация Monet4ik, 2022.\n Все права защищены.</string>
+    <string name="info_app_text">Обучающее мобильное приложение \"Первые шаги в информационные технологии\"</string>
+
     <!-- strings for Firebase connecting    -->
-    <string name="web_client_id">204278373755-nll2i8mchfq2tut84b0hntvad20eau1h.apps.googleusercontent.com</string>
+    <string name="web_client_id">204278373755-u6gs1luuvm43djaofcu4csv9msnvu5lc.apps.googleusercontent.com</string>
+
+
 </resources>
