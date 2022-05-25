@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_lesson"
-        android:name="com.example.diplom2022.views.fragments.HomeFragment"
+        android:name="com.example.diplom2022.views.fragments.LessonsFragment"
         android:label="@string/menu_lesson"
         tools:layout="@layout/fragment_lesson" />
 
@@ -19,13 +19,13 @@
 
     <fragment
         android:id="@+id/nav_guide"
-        android:name="com.example.diplom2022.views.fragments.GalleryFragment"
+        android:name="com.example.diplom2022.views.fragments.GuideFragment"
         android:label="@string/menu_guide"
         tools:layout="@layout/fragment_guide" />
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.example.diplom2022.views.fragments.SlideshowFragment"
+        android:name="com.example.diplom2022.views.fragments.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment

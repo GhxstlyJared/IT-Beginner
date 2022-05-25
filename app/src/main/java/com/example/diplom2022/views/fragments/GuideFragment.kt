@@ -7,15 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.diplom2022.databinding.FragmentGuideBinding
-import com.example.diplom2022.viewmodels.HomeViewModel
+import com.example.diplom2022.databinding.FragmentLessonBinding
+import com.example.diplom2022.viewmodels.GuideViewModel
 
-class HomeFragment : Fragment() {
+class GuideFragment : Fragment() {
 
-    private var _binding: FragmentGuideBinding? = null
+    private var _binding: FragmentLessonBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -23,14 +21,14 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val galleryViewModel =
+            ViewModelProvider(this)[GuideViewModel::class.java]
 
-        _binding = FragmentGuideBinding.inflate(inflater, container, false)
+        _binding = FragmentLessonBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textGallery
+        galleryViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

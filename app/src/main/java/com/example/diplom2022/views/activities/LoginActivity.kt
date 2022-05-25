@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.example.diplom2022.R
+import com.example.diplom2022.databinding.ActivityLoginBinding
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -16,15 +18,17 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class MainActivity : AppCompatActivity() {
-    // [START declare_auth]
-    private lateinit var auth: FirebaseAuth
-    // [END declare_auth]
+class LoginActivity : AppCompatActivity() {
+
+    lateinit var auth: FirebaseAuth
+    lateinit var binding: ActivityLoginBinding
 
     private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id))
@@ -33,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         auth = Firebase.auth
+
     }
 
     override fun onStart() {
@@ -71,13 +76,13 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun signIn() {
+    fun signIn(view: View) {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     private fun updateUI(user: FirebaseUser?) {
-
+        startActivity(Intent(this, MenuActivity::class.java))
     }
 
     companion object {

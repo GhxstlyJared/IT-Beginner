@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class GalleryViewModel : ViewModel() {
+class GuideViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "Руководство пользователя в разработке"
