@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.activity.result.ActivityResultLauncher
 import com.example.diplom2022.R
 import com.example.diplom2022.databinding.ActivityLoginBinding
 
@@ -38,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         auth = Firebase.auth
+
     }
 
     override fun onStart() {
