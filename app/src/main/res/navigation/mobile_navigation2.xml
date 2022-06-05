@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/nav_lesson"
-        android:name="com.example.diplom2022.views.fragments.LessonsFragment"
+        android:name="com.example.diplom2022.views.fragments.LessonsListFragment"
         android:label="@string/menu_lesson"
-        tools:layout="@layout/fragment_lesson" />
+        tools:layout="@layout/fragment_lessons_list" />
 
     <fragment
         android:id="@+id/nav_test"
-        android:name="com.example.diplom2022.views.fragments.TestFragment"
+        android:name="com.example.diplom2022.views.fragments.TestsListFragment"
         android:label="@string/menu_test"
         tools:layout="@layout/fragment_test" />
 

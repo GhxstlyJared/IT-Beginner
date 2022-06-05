@@ -37,7 +37,6 @@ class LoginActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         auth = Firebase.auth
-
     }
 
     override fun onStart() {
@@ -82,7 +81,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI(user: FirebaseUser?) {
-        startActivity(Intent(this, MenuActivity::class.java))
+        if (user != null)
+            startActivity(Intent(this, MenuActivity::class.java))
     }
 
     companion object {

@@ -1,17 +1,16 @@
 package com.example.diplom2022.views.activities
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -21,24 +20,14 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
+
 class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMenuBinding
-
-    private var arrayLesson = arrayOf(
-        "Урок 1",
-        "Урок 2",
-        "Урок 3",
-        "Урок 4",
-        "Урок 5",
-        "Урок 6",
-        "Урок 7",
-        "Урок 8"
-    )
+    lateinit var  nav: DrawerLayout
 
     lateinit var auth: FirebaseAuth
-    lateinit var  nav: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +53,6 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(binding.appBarMenu.toolbar)
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_menu)
 
         appBarConfiguration = AppBarConfiguration(
@@ -78,39 +66,28 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        navigationView.setupWithNavController(navController)
 
+        navigationView.setNavigationItemSelectedListener { item ->
+            if (item.itemId == R.id.nav_exit) {
+                auth.signOut()
+                finish()
+            } else {
+                onNavDestinationSelected(item, navController)
+                drawerLayout.closeDrawers()
+            }
+            false
+        }
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        when (menuItem.itemId) {
-            R.id.nav_exit -> {
-                auth.signOut()
-                finish()
-            }
-        }
-        nav.closeDrawer(GravityCompat.START)
-        return onNavigationItemSelected(menuItem)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.sign_out) {
-            auth.signOut()
-            finish()
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        return super.onCreateOptionsMenu(menu)
+            TODO()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_menu)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
 }
 
 

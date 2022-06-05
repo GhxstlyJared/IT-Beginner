@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.diplom2022.databinding.FragmentGuideBinding
 import com.example.diplom2022.databinding.FragmentLessonBinding
 import com.example.diplom2022.viewmodels.GuideViewModel
 
 class GuideFragment : Fragment() {
 
-    private var _binding: FragmentLessonBinding? = null
+    private var _binding: FragmentGuideBinding? = null
 
     private val binding get() = _binding!!
 
@@ -21,16 +22,8 @@ class GuideFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val galleryViewModel =
-            ViewModelProvider(this)[GuideViewModel::class.java]
-
-        _binding = FragmentLessonBinding.inflate(inflater, container, false)
+        _binding = FragmentGuideBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textGallery
-        galleryViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 

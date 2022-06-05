@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.diplom2022.databinding.FragmentTestBinding
 import com.example.diplom2022.viewmodels.TestsViewModel
 
-class TestFragment : Fragment() {
+class TestsListFragment : Fragment() {
 
     private var _binding: FragmentTestBinding? = null
 
