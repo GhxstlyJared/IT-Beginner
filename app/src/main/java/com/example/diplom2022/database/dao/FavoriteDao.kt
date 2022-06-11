@@ -16,8 +16,8 @@ interface FavoriteDao {
     fun getFavoritesList(email: String): LiveData<List<Favorite>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertFavorite(favorite: Favorite)
+    fun insertFavorite(favorite: Favorite)
 
     @Query("DELETE FROM favorites where email = :email")
-    fun deleteFavorite(email: String)
+    fun deleteFavorite(email: String?)
 }

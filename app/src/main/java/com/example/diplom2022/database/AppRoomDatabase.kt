@@ -16,7 +16,7 @@ import kotlinx.coroutines.*
 
 @Database(
     entities = [Question::class, Test::class, Lesson::class, Favorite::class],
-    version = 9
+    version = 10
 )
 abstract class AppRoomDatabase : RoomDatabase() {
 
@@ -51,6 +51,7 @@ abstract class AppRoomDatabase : RoomDatabase() {
                     }
                 })
                 .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
                 .build()
 
         val PREPOPULATE_DATA_LESSONS = listOf(

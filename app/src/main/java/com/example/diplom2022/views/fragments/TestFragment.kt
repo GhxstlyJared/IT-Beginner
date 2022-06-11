@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.diplom2022.ApplicationConfig
@@ -39,7 +40,7 @@ class TestFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentTestBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -49,7 +50,6 @@ class TestFragment : Fragment() {
         val checkAnswerBtn = root.findViewById(R.id.checkAnswerBtn) as Button
 
         checkAnswerBtn.setOnClickListener { onClickListener() }
-
         return root
     }
 
@@ -62,7 +62,6 @@ class TestFragment : Fragment() {
         }
         applicationViewModel.questions.observe(viewLifecycleOwner) { questions ->
             for (el in questions) {
-                println(el.title)
                 if (el.testId == testId) {
                     this.questions.add(el)
                     questionTextView.text = el.title.substring(2)
@@ -72,12 +71,12 @@ class TestFragment : Fragment() {
             isFirstInit = false
             initQuestion()
         }
-    } //nextQuestionText
+    }
 
     private fun initQuestion() {
-        answerBtn1.setTextColor(resources.getColor(R.color.black))
-        answerBtn2.setTextColor(resources.getColor(R.color.black))
-        answerBtn3.setTextColor(resources.getColor(R.color.black))
+        answerBtn1.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        answerBtn2.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        answerBtn3.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
         answerBtn1.text = currentQuestion.answerA
         answerBtn2.text = currentQuestion.answerB
         answerBtn3.text = currentQuestion.answerC
@@ -88,11 +87,11 @@ class TestFragment : Fragment() {
         checkAnswerBtn.setText(R.string.checkAnswerText)
     }
 
-    private fun onClickListener() { // ebat' skol'ko ifov
+    private fun onClickListener() {
         if (radioGroup.checkedRadioButtonId == -1) {
             Toast.makeText(
                 context,
-                "Выберите один из вариантов ответа",
+                getString(R.string.testInstructionText),
                 Toast.LENGTH_SHORT,
             ).show()
             return
@@ -104,7 +103,7 @@ class TestFragment : Fragment() {
                 val builder = AlertDialog.Builder(context)
                 builder.setTitle("Тест окончен")
                     .setMessage("Вы завершили тест ответив правильно на $correctAnswers из 3 вопросов")
-                    .setPositiveButton("Продолжить") { dialog, id ->
+                    .setPositiveButton("Продолжить") { dialog, _ ->
                         this.fragmentManager?.popBackStack()
                         dialog.cancel()
                     }
@@ -120,17 +119,15 @@ class TestFragment : Fragment() {
     private fun checkAnswer() {
         val checkedBtn: RadioButton = requireView().findViewById(radioGroup.checkedRadioButtonId)
         lockingRadio(false)
-        var answer = true
 
         if (isAnswerCorrect(checkedBtn)) {
             correctAnswers++
             checkedBtn.isEnabled = true
-            checkedBtn.setTextColor(resources.getColor(R.color.Green))
+            checkedBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.Green))
         } else {
-            answer = false
             showTrueAnswer()
             checkedBtn.isActivated = true
-            checkedBtn.setTextColor(resources.getColor(R.color.Red))
+            checkedBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.Red))
         }
 
         checkAnswerBtn.text = getString(R.string.nextQuestionText)
@@ -142,7 +139,7 @@ class TestFragment : Fragment() {
             val radioButton = radioGroup.getChildAt(i) as RadioButton
             if (isAnswerCorrect(radioButton)) {
                 radioButton.isEnabled = true
-                radioButton.setTextColor(resources.getColor(R.color.Green))
+                radioButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.Green))
             }
         }
     }

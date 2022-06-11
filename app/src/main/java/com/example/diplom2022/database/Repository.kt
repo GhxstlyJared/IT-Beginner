@@ -10,7 +10,7 @@ import com.example.diplom2022.database.entities.Lesson
 import com.example.diplom2022.database.entities.Question
 import com.example.diplom2022.database.entities.Test
 
-class Repository(private val lessonDao: LessonDao, private val testDao: TestDao, private val favoriteDo: FavoriteDao) {
+class Repository(lessonDao: LessonDao, testDao: TestDao, private val favoriteDo: FavoriteDao) {
 
     val lessons: LiveData<List<Lesson>> = lessonDao.getLessonsList()
 
@@ -22,16 +22,14 @@ class Repository(private val lessonDao: LessonDao, private val testDao: TestDao,
         return favoriteDo.getFavoritesList(email)
     }
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    suspend fun insertFavorite(favorite: Favorite) {
+    fun insertFavorite(favorite: Favorite) {
        favoriteDo.insertFavorite(favorite)
     }
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun deleteFavorite(email : String) {
-        lessonDao.deleteFavorite(email)
+    suspend fun deleteFavorite(email : String?) {
+        favoriteDo.deleteFavorite(email)
     }
 
 }

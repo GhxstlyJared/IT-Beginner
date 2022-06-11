@@ -4,21 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
 import com.example.diplom2022.ApplicationConfig
 import com.example.diplom2022.R
 import com.example.diplom2022.database.entities.Favorite
 import com.example.diplom2022.databinding.FragmentLessonBinding
-import com.example.diplom2022.databinding.FragmentLessonsListBinding
 import com.example.diplom2022.viewmodels.ApplicationViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_lesson.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class LessonFragment : Fragment() {
 
@@ -30,32 +25,41 @@ class LessonFragment : Fragment() {
         ApplicationViewModel.DatabaseViewModelFactory((activity?.application as ApplicationConfig).repository)
     }
     private var email: String? = null
-    private var bool: Boolean = false
     private val lessonId = ApplicationConfig.selectedLessonId.value
+    private var favorite: Favorite? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLessonBinding.inflate(inflater, container, false)
 
+        favorite = Favorite(0)
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        email = currentUser?.email
+        favorite!!.email = currentUser?.email
+        favorite!!.lessonId = lessonId
+
+        email?.let { it ->
+            applicationViewModel.getFavoritesList(it).observe(viewLifecycleOwner) { favorites ->
+                if (favorites.map { favorite ->  favorite.lessonId }.contains(lessonId)) {
+                    favoriteImageBtn.setImageResource(R.drawable.ic_favorite_checked_circle)
+                    favoriteImageBtn.tag = true
+                } else {
+                    favoriteImageBtn.setImageResource(R.drawable.ic_favorite_unchecked_circle)
+                    favoriteImageBtn.tag = false
+                }
+            }
+        }
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        email = currentUser?.email
-
-        email?.let {
-            applicationViewModel.getFavoritesList(it).observe(viewLifecycleOwner) { favorites ->
-                if (favorites.map { it.lessonId }.contains(lessonId))
-                    setFavoriteBtn.setImageResource(R.drawable.ic_favorite_checked_circle)
-            }
-        }
-        setFavoriteBtn.setOnClickListener { onFavoriteClick() }
+        favoriteImageBtn.setOnClickListener { onFavoriteClick() }
 
         applicationViewModel.lessons.observe(viewLifecycleOwner) { _lessons ->
             for (el in _lessons) {
@@ -67,23 +71,19 @@ class LessonFragment : Fragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                this@LessonFragment.fragmentManager?.popBackStack()
+            }
+        })
+    }
 
     private fun onFavoriteClick() {
-        if(bool){
-            setFavoriteBtn.setImageResource(R.drawable.ic_favorite_unchecked_circle)
-            bool = false
-        }
-        else{
-            setFavoriteBtn.setImageResource(R.drawable.ic_favorite_checked_circle)
-            bool = true
-        }
-        val favorite = lessonId?.let { Favorite(0, it, "email") }
-        try {
-            if (favorite != null) {
-                    applicationViewModel.insertFavorite(favorite)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        if (favoriteImageBtn.tag == true)
+            favorite?.let { favorite -> applicationViewModel.deleteFavorite(favorite.email!!) }
+        else
+            favorite?.let { favorite -> applicationViewModel.insertFavorite(favorite) }
     }
 }

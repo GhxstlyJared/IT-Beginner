@@ -24,6 +24,7 @@
     <string name="info_app_text">Обучающее мобильное приложение \"Первые шаги в информационные технологии\"</string>
 
     <!-- strings for Test-logic    -->
+    <string name="testInstructionText">Выберите один из вариантов ответа</string>
     <string name="testQuestionText">Вопрос №1. На каком языке ведется Android-разработка?</string>
     <string name="answerText1">Ответ №1</string>
     <string name="answerText2">Ответ №2</string>
