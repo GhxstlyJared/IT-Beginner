@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.diplom2022.database.dao.FavoriteDao
 import com.example.diplom2022.database.dao.LessonDao
 import com.example.diplom2022.database.dao.TestDao
 import com.example.diplom2022.database.entities.Favorite
@@ -15,12 +16,13 @@ import kotlinx.coroutines.*
 
 @Database(
     entities = [Question::class, Test::class, Lesson::class, Favorite::class],
-    version = 3
+    version = 9
 )
 abstract class AppRoomDatabase : RoomDatabase() {
 
     abstract fun lessonDao(): LessonDao
     abstract fun testDao(): TestDao
+    abstract fun favoriteDao(): FavoriteDao
 
     companion object {
 
@@ -44,11 +46,11 @@ abstract class AppRoomDatabase : RoomDatabase() {
                             delay(1000L)
                             getInstance(context).lessonDao().insertLessons(PREPOPULATE_DATA_LESSONS)
                             getInstance(context).testDao().insertTests(PREPOPULATE_DATA_TESTS)
-                            getInstance(context).testDao()
-                                .insertQuestions(PREPOPULATE_DATA_QUESTIONS)
+                            getInstance(context).testDao().insertQuestions(PREPOPULATE_DATA_QUESTIONS)
                         }
                     }
                 })
+                .fallbackToDestructiveMigration()
                 .build()
 
         val PREPOPULATE_DATA_LESSONS = listOf(

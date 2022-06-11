@@ -10,15 +10,29 @@ import kotlinx.coroutines.SupervisorJob
 
 class ApplicationConfig : Application() {
     val database by lazy { AppRoomDatabase.getInstance(this) }
-    val repository by lazy { Repository(database.lessonDao(),database.testDao()) }
+    val repository by lazy { Repository(database.lessonDao(),database.testDao(),database.favoriteDao()) }
 
     companion object{
+
+        // Lesson tree
+
         private val mutableSelectedLesson = MutableLiveData<Int>()
 
         val selectedLessonId: LiveData<Int> get() = mutableSelectedLesson
 
         fun selectLesson(id: Int) {
             mutableSelectedLesson.value = id
+        }
+
+
+        // Test tree
+
+        private val mutableSelectedTest = MutableLiveData<Int>()
+
+        val selectedTestId: LiveData<Int> get() = mutableSelectedTest
+
+        fun selectTest(id: Int) {
+            mutableSelectedTest.value = id
         }
     }
 }

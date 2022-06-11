@@ -10,13 +10,13 @@ import com.example.diplom2022.database.entities.Lesson
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface LessonDao {
+interface FavoriteDao {
+
+    @Query("SELECT * from favorites where email = :email")
+    fun getFavoritesList(email: String): LiveData<List<Favorite>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertLessons(list: List<Lesson>)
-
-    @Query("SELECT * from lessons")
-    fun getLessonsList(): LiveData<List<Lesson>>
+    suspend fun insertFavorite(favorite: Favorite)
 
     @Query("DELETE FROM favorites where email = :email")
     fun deleteFavorite(email: String)

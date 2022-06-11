@@ -3,21 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/drawable/ic_favorite_checked.xml" value="0.2095" />
+        <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/drawable/ic_favorite_unchecked.xml" value="0.2095" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/drawable/ic_guide.xml" value="0.2095" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/activity_login.xml" value="0.20208333333333334" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/activity_main.xml" value="0.20208333333333334" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/activity_menu.xml" value="0.25" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/adapter_item.xml" value="0.33" />
+        <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/adapter_item_lesson.xml" value="0.3180846515604959" />
+        <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/adapter_item_test.xml" value="0.3180846515604959" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/app_bar_menu.xml" value="0.20208333333333334" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/content_menu.xml" value="0.20208333333333334" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/fragment_guide.xml" value="0.3875" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/fragment_info.xml" value="0.33" />
-        <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/fragment_lesson.xml" value="0.20208333333333334" />
+        <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/fragment_lesson.xml" value="0.29523809523809524" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/fragment_lesson2.xml" value="0.3875" />
-        <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/fragment_lessons_list.xml" value="0.20208333333333334" />
+        <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/fragment_lessons_list.xml" value="0.5" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/fragment_settings.xml" value="0.3875" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/fragment_test.xml" value="0.3875" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/fragment_test2.xml" value="0.3875" />
+        <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/fragment_tests_list.xml" value="0.20208333333333334" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/item_error.xml" value="0.20208333333333334" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/nav_header_menu.xml" value="0.33" />
         <entry key="..\:/Mine/IT/LPs/Android/Diplom2022/Diplom2022/app/src/main/res/layout/progress_view.xml" value="0.75" />

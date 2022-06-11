@@ -4,7 +4,6 @@ import kotlinx.coroutines.launch
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.diplom2022.database.Repository
 import com.example.diplom2022.database.entities.Favorite
@@ -20,8 +19,12 @@ class ApplicationViewModel(private val repository: Repository) : ViewModel() {
 
     val questions: LiveData<List<Question>> = repository.questions
 
+    fun getFavoritesList(email: String) : LiveData<List<Favorite>> {
+        return repository.getFavorites(email)
+    }
+
     fun insertFavorite(favorite: Favorite) = viewModelScope.launch {
-        repository.insertFavorite(favorite) }
+        repository. insertFavorite(favorite) }
 
     fun deleteFavorite(email : String) = viewModelScope.launch {
         repository.deleteFavorite(email)
