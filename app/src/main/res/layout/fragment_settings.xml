@@ -6,17 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".views.fragments.SettingsFragment">
 
-    <TextView
-        android:id="@+id/text_slideshow"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/saveSettingsBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/saveSettingsBtnText"
+        android:backgroundTint="?attr/button_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:text="@string/darkThemeSwitchText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Сначала избранные"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setPhotoBtn" />
+
+    <Button
+        android:id="@+id/setPhotoBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="?attr/button_color"
+        android:text="Изменить фото"
+        app:layout_constraintEnd_toEndOf="@+id/switchTheme"
+        app:layout_constraintStart_toStartOf="@+id/switchTheme"
+        app:layout_constraintTop_toBottomOf="@+id/switchTheme" />
 </androidx.constraintlayout.widget.ConstraintLayout>

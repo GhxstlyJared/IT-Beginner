@@ -4,42 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".views.fragments.LessonFragment">
+
+    <RelativeLayout
+        android:id="@+id/parentRelative"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLessonTextView">
+
+        <RelativeLayout
+            android:id="@+id/viewRelative"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:layout_alignBottom="@id/favoriteImageBtn"
+            android:layout_alignTop="@id/favoriteImageBtn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#FF0000FF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/favoriteImageBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:background="@null"
+            android:backgroundTint="#C51D1D"
+            android:foregroundGravity="center"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_favorite_unchecked_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline25"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="2dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.16" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:visibility="invisible"
-        android:background="#FF0000FF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline25" />
+        app:layout_constraintGuide_percent="0.20" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view">
+        app:layout_constraintTop_toBottomOf="@id/guideline25">
 
         <TextView
             android:id="@+id/contentLessonTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:text="@string/large_text"
-            android:textColor="#000000" />
+            android:fontFamily="@font/merriweather"
+            android:justificationMode="inter_word"
+            android:text="шлкоолширь шиншила щука чк чн аю юл ал"
+            android:textColor="?attr/text_color"
+            android:textSize="16sp" />
 
     </androidx.core.widget.NestedScrollView>
 
@@ -47,27 +92,17 @@
         android:id="@+id/titleLessonTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/poiret_one"
         android:text="Урок 1. Введение"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/view"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/favoriteImageBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@null"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_favorite_unchecked_circle"
-        app:layout_constraintBottom_toTopOf="@+id/guideline25"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

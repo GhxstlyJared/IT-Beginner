@@ -20,7 +20,7 @@ import io.github.farshidroohi.extensions.onItemClickListener
 import kotlinx.android.synthetic.main.fragment_lessons_list.*
 import java.util.*
 
-class LessonsListFragment : Fragment(), SearchView.OnQueryTextListener  {
+class LessonsListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private var _binding: FragmentLessonsListBinding? = null
 
@@ -30,8 +30,8 @@ class LessonsListFragment : Fragment(), SearchView.OnQueryTextListener  {
         ApplicationViewModel.DatabaseViewModelFactory((activity?.application as ApplicationConfig).repository)
     }
 
-    private lateinit var lessonsAdapter : LessonsAdapter
-    private var titlesLessonList = ArrayList<String>()
+    private lateinit var lessonsAdapter: LessonsAdapter
+    private var titlesLessonList = ArrayList<String>(20)
     private var titlesLessonListBuff = ArrayList<String>()
 
     override fun onCreateView(
@@ -48,21 +48,17 @@ class LessonsListFragment : Fragment(), SearchView.OnQueryTextListener  {
         super.onActivityCreated(savedInstanceState)
 
         val email = FirebaseAuth.getInstance().currentUser?.email
-        var favoritesList = ArrayList<Int>()
-        email?.let { applicationViewModel.getFavoritesList(email).observe(viewLifecycleOwner){favorites ->
-            favoritesList = favorites.map { it.lessonId } as ArrayList<Int>
-        } }
-        lessonsAdapter = LessonsAdapter(applicationViewModel, viewLifecycleOwner, favoritesList)
 
+        lessonsAdapter = LessonsAdapter(applicationViewModel, viewLifecycleOwner, email)
         applicationViewModel.lessons.observe(viewLifecycleOwner) { _lessons ->
-            for (el in _lessons){
+            for (el in _lessons) {
                 titlesLessonList += el.title
             }
             titlesLessonListBuff = titlesLessonList
             lessonsAdapter.loadedState(titlesLessonList)
         }
 
-        val recyclerViewLocal : RecyclerView = view?.findViewById(R.id.recyclerViewLessons)!!
+        val recyclerViewLocal: RecyclerView = view?.findViewById(R.id.recyclerViewLessons)!!
         recyclerViewLocal.layoutManager = GridLayoutManager(context, 2)
         recyclerViewLocal.adapter = lessonsAdapter
 

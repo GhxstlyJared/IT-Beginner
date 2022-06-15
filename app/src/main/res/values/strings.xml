@@ -24,6 +24,7 @@
     <string name="info_app_text">Обучающее мобильное приложение \"Первые шаги в информационные технологии\"</string>
 
     <!-- strings for Test-logic    -->
+    <string name="testTitleText">Урок 1. Введение</string>
     <string name="testInstructionText">Выберите один из вариантов ответа</string>
     <string name="testQuestionText">Вопрос №1. На каком языке ведется Android-разработка?</string>
     <string name="answerText1">Ответ №1</string>
@@ -31,6 +32,10 @@
     <string name="answerText3">Ответ №3</string>
     <string name="checkAnswerText">Проверить</string>
     <string name="nextQuestionText">Дальше</string>
+
+    <!--    string for Settings-->
+    <string name="saveSettingsBtnText">Применить</string>
+    <string name="darkThemeSwitchText">Темная тема</string>
 
 
     <!-- strings for Firebase connecting    -->

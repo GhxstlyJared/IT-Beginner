@@ -53,10 +53,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
+    implementation 'androidx.work:work-runtime-ktx:2.7.0'
 
     implementation 'io.github.farshidroohi:customAdapterRecycleView:2.0.3'
-//    implementation 'com.shuhart.stepview:stepview:1.4.0'
-
+    implementation 'com.anton46:stepsview:0.0.2'
 
     // Room components
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"

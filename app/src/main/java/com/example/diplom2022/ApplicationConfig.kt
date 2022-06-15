@@ -24,6 +24,7 @@ class ApplicationConfig : Application() {
             mutableSelectedLesson.value = id
         }
 
+        val isFavoriteFirst : Boolean = true
 
         // Test tree
 

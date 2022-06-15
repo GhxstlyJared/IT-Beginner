@@ -9,17 +9,19 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.Diplom2022.AppBarOverlay">
+        android:theme="@style/LightTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/teal_700"
-            app:popupTheme="@style/Theme.Diplom2022.PopupOverlay" />
+            android:background="?attr/button_color"
+            app:popupTheme="@style/LightTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_menu" />
+    <include
+        android:id="@+id/nav_host_fragment"
+        layout="@layout/content_menu" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

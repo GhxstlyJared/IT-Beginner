@@ -1,0 +1,39 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--     Light application theme. -->
+    <style name="LightTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#5C6BC0</item>
+        <item name="colorPrimaryDark">#26418f</item>
+        <item name="colorPrimaryVariant">#8e99f3</item>
+        <item name="colorAccent">#8e99f3</item>
+        <item name="text_color">@color/black</item>
+        <item name="text_color_nav">@color/white</item>
+        <item name="button_color">#5C6BC0</item>
+        <item name="background_color">#EDEDF1</item>
+        <item name="card_color">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <!-- dark application theme. -->
+    <style name="darkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorAccent">@color/black</item>
+        <!--        <item name="background_color">#FFFFFF</item>-->
+        <item name="text_color">@color/Red</item>
+        <item name="text_color_nav">@color/white</item>
+        <item name="button_color">@color/black</item>
+        <item name="background_color">@color/black</item>
+        <item name="card_color">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="LightTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="LightTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="LightTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

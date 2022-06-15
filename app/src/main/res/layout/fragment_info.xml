@@ -13,7 +13,7 @@
         android:maxHeight="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:background="@color/teal_700"
+        android:background="?attr/background_color"
         android:scaleType="fitCenter"
         android:src="@drawable/logo"
         android:adjustViewBounds="true"

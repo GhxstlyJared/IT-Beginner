@@ -63,6 +63,7 @@ class TestsListFragment : Fragment() {
             this.fragmentManager?.beginTransaction()
                 ?.replace(R.id.nav_host_fragment_content_menu, testFragment, "findThisFragment")
                 ?.addToBackStack("testsListFragment")
+                ?.setReorderingAllowed(true)
                 ?.commit();
         }, { position ->
             if (position == testsAdapter.itemCount - 1 && !testsAdapter.mustLoad) {

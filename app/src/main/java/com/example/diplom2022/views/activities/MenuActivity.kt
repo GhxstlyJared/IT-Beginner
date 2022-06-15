@@ -5,7 +5,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -39,7 +38,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav = findViewById(R.id.drawer_layout)
         val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
         val headerView: View = navigationView.getHeaderView(0)
-        val imageView:ImageView = headerView.findViewById(R.id.navImageView)
+        val imageView:ImageView = headerView.findViewById(R.id.navProfilePhoto)
         val userNameTextView : TextView = headerView.findViewById(R.id.userNameTextView)
         val userEmailTextView : TextView = headerView.findViewById(R.id.userEmailTextView)
 

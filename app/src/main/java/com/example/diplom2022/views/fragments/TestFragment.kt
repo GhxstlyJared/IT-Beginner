@@ -18,6 +18,7 @@ import com.example.diplom2022.database.entities.Question
 import com.example.diplom2022.databinding.FragmentTestBinding
 import com.example.diplom2022.viewmodels.ApplicationViewModel
 import kotlinx.android.synthetic.main.fragment_test.*
+import kotlinx.android.synthetic.main.fragment_test.view.*
 
 class TestFragment : Fragment() {
 
@@ -31,9 +32,7 @@ class TestFragment : Fragment() {
     private lateinit var questions: ArrayList<Question>
 
     private var correctAnswers: Int = 0
-
     private var isFirstInit: Boolean = true
-
     private lateinit var currentQuestion: Question
 
     override fun onCreateView(
@@ -45,6 +44,25 @@ class TestFragment : Fragment() {
         _binding = FragmentTestBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val labels = arrayOf("", "", "")
+        context?.let {
+            root.stepsView.setLabels(labels)
+                .setBarColorIndicator(
+                    ContextCompat.getColor(
+                        it,
+                        R.color.colorPrimaryVariantLightTheme
+                    )
+                )
+                .setProgressColorIndicator(
+                    ContextCompat.getColor(
+                        it,
+                        R.color.colorPrimaryVariantLightTheme
+                    )
+                )
+                .setLabelColorIndicator(ContextCompat.getColor(it, R.color.colorPrimaryLightTheme))
+                .drawView()
+        }
+
         questions = ArrayList(mutableListOf())
         initTest()
         val checkAnswerBtn = root.findViewById(R.id.checkAnswerBtn) as Button
@@ -52,6 +70,7 @@ class TestFragment : Fragment() {
         checkAnswerBtn.setOnClickListener { onClickListener() }
         return root
     }
+
 
     private fun initTest() {
         val testId = ApplicationConfig.selectedTestId.value
@@ -68,7 +87,6 @@ class TestFragment : Fragment() {
                 }
             }
             currentQuestion = this.questions[0]
-            isFirstInit = false
             initQuestion()
         }
     }
@@ -117,17 +135,40 @@ class TestFragment : Fragment() {
     }
 
     private fun checkAnswer() {
+        context?.let {
+            if (!isFirstInit) binding.root.stepsView.completedPosition += 1
+            else isFirstInit = false
+            binding.root.stepsView.setLabels(arrayOf("", "", "")).setBarColorIndicator(
+                ContextCompat.getColor(
+                    it,
+                    R.color.colorPrimaryVariantLightTheme
+                )
+            )
+                .setProgressColorIndicator(
+                    ContextCompat.getColor(
+                        it,
+                        R.color.colorPrimaryDarkLightTheme
+                    )
+                )
+                .setLabelColorIndicator(
+                    ContextCompat.getColor(
+                        it,
+                        R.color.colorPrimaryLightTheme
+                    )
+                )
+                .drawView()
+        }
         val checkedBtn: RadioButton = requireView().findViewById(radioGroup.checkedRadioButtonId)
         lockingRadio(false)
 
         if (isAnswerCorrect(checkedBtn)) {
             correctAnswers++
             checkedBtn.isEnabled = true
-            checkedBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.Green))
+            checkedBtn.setTextColor(ContextCompat.getColor(requireContext(), R.color.Green))
         } else {
             showTrueAnswer()
             checkedBtn.isActivated = true
-            checkedBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.Red))
+            checkedBtn.setTextColor(ContextCompat.getColor(requireContext(), R.color.Red))
         }
 
         checkAnswerBtn.text = getString(R.string.nextQuestionText)

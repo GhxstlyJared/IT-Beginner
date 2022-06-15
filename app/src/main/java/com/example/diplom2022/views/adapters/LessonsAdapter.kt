@@ -1,21 +1,18 @@
 package com.example.diplom2022.views.adapters
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import com.example.diplom2022.R
 import com.example.diplom2022.viewmodels.ApplicationViewModel
 import io.github.farshidroohi.AdapterRecyclerView
 import kotlinx.android.synthetic.main.adapter_item_lesson.view.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class LessonsAdapter(
     appViewModel: ApplicationViewModel,
     viewLifecycleOwner: LifecycleOwner,
-    favoritesLessonId: List<Int>,
+    _email: String?
 ) : AdapterRecyclerView<String?>(
     R.layout.adapter_item_lesson,
     R.layout.adapter_progress_view,
@@ -23,9 +20,9 @@ class LessonsAdapter(
     R.id.btnTrayAgain
 ) {
 
-    private var favoritesLessonIdList: List<Int>? = favoritesLessonId
     private var viewModel: ApplicationViewModel? = appViewModel
     private val viewLifecycleOwnerInstance = viewLifecycleOwner
+    private val email = _email
 
     override fun onBindView(
         viewHolder: ItemViewHolder,
@@ -33,13 +30,24 @@ class LessonsAdapter(
         context: Context,
         element: String?
     ) {
+        viewHolder.setIsRecyclable(false);
+
         val itemView = viewHolder.itemView
         itemView.lesson_title.text = "$element"
 
         viewModel?.lessons?.observe(viewLifecycleOwnerInstance) { _lessons ->
-            for (el in _lessons) {
-                if (el.title == element && favoritesLessonIdList?.contains(el.id)!!) {
-                    viewHolder.itemView.isFavoriteBtn.visibility = View.VISIBLE
+            if (_lessons.map { it.title }.contains(element)) {
+                email?.let { email ->
+                    viewModel?.getFavoritesList(email)
+                        ?.observe(viewLifecycleOwnerInstance) { _favorites ->
+                            for (el in _lessons) {
+                                if (el.title == element && _favorites?.map { it.lessonId }
+                                        ?.contains(el.id)!!) {
+                                    println("test ${el.id}")
+                                    viewHolder.itemView.isFavoriteBtn.visibility = View.VISIBLE
+                                }
+                            }
+                        }
                 }
             }
         }
