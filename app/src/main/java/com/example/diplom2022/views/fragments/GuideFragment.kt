@@ -1,15 +1,14 @@
 package com.example.diplom2022.views.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.diplom2022.databinding.FragmentGuideBinding
-import com.example.diplom2022.databinding.FragmentLessonBinding
-import com.example.diplom2022.viewmodels.GuideViewModel
+
 
 class GuideFragment : Fragment() {
 
@@ -24,6 +23,10 @@ class GuideFragment : Fragment() {
     ): View {
         _binding = FragmentGuideBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://bi4iska.wixsite.com/it-beginner-2022/post/user-manual"))
+        startActivity(browserIntent)
+
         return root
     }
 

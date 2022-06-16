@@ -15,12 +15,11 @@
     </style>
 
     <!-- dark application theme. -->
-    <style name="darkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">#5C6BC0</item>
+    <style name="darkTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorPrimary">#000000</item>
         <item name="colorPrimaryDark">#2a2a2b</item>
         <item name="colorPrimaryVariant">#393d3f</item>
         <item name="colorAccent">#393d3f</item>
-        <!--        <item name="background_color">#FFFFFF</item>-->
         <item name="text_color">@color/white</item>
         <item name="text_color_nav">@color/white</item>
         <item name="button_color">#5C6BC0</item>

@@ -31,7 +31,6 @@ class LessonsAdapter(
         element: String?
     ) {
         viewHolder.setIsRecyclable(false);
-
         val itemView = viewHolder.itemView
         itemView.lesson_title.text = "$element"
 
@@ -51,5 +50,9 @@ class LessonsAdapter(
                 }
             }
         }
+    }
+
+    override fun setHasStableIds(hasStableIds: Boolean) {
+        super.setHasStableIds(hasStableIds)
     }
 }

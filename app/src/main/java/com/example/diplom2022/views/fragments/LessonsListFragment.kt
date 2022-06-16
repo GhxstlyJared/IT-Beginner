@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diplom2022.ApplicationConfig
 import com.example.diplom2022.R
-import com.example.diplom2022.database.entities.Lesson
 import com.example.diplom2022.databinding.FragmentLessonsListBinding
 import com.example.diplom2022.models.SharedPref
+import com.example.diplom2022.models.SortedLesson
 import com.example.diplom2022.viewmodels.*
 import com.example.diplom2022.views.adapters.LessonsAdapter
 import com.google.firebase.auth.FirebaseAuth
@@ -21,7 +21,6 @@ import io.github.farshidroohi.extensions.onItemClickListener
 import kotlinx.android.synthetic.main.fragment_lessons_list.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 import java.util.*
-import kotlin.collections.HashMap
 
 class LessonsListFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -36,7 +35,7 @@ class LessonsListFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var lessonsAdapter: LessonsAdapter
     private var titlesLessonList = ArrayList<String>(20)
     private var titlesLessonListBuff = ArrayList<String>()
-    private var titlesLessonListFavorites = hashMapOf<String,Boolean>()
+    private var titlesLessonListFavorites = ArrayList<SortedLesson>()
 
     private lateinit var sharedPreferences: SharedPref
 
@@ -67,10 +66,11 @@ class LessonsListFragment : Fragment(), SearchView.OnQueryTextListener {
                 titlesLessonList.clear()
                 email?.let {
                     applicationViewModel.getFavoritesList(it).observe(viewLifecycleOwner){ favoritesList ->
-                        for(el in _lessons){
-                            titlesLessonListFavorites[el.title] = favoritesList.map { it.lessonId }.contains(el.id)
+                        for((i,el) in _lessons.withIndex()){
+                            val sortedLesson = SortedLesson(i,el.title,favoritesList.map { it.lessonId }.contains(el.id))
+                            titlesLessonListFavorites.add(sortedLesson)
                         }
-                        titlesLessonList.addAll(titlesLessonListFavorites.map{ it.key to it.value }.sortedBy { !it.second }.toMap().map { it.key })
+                        titlesLessonList.addAll(titlesLessonListFavorites.sortedWith(compareBy({ !it.isFavorite }, { it.id })).toTypedArray().map { it.title })
                         titlesLessonListBuff = titlesLessonList
                         lessonsAdapter.loadedState(titlesLessonList)
                     }
@@ -87,19 +87,13 @@ class LessonsListFragment : Fragment(), SearchView.OnQueryTextListener {
         recyclerViewLocal.adapter = lessonsAdapter
 
         recyclerViewLocal.onItemClickListener({ position ->
-            if (position == lessonsAdapter.itemCount - 1 && !lessonsAdapter.mustLoad) {
-                return@onItemClickListener
-            }
             ApplicationConfig.selectLesson(position)
             val lessonFragment = LessonFragment()
             this.fragmentManager?.beginTransaction()
                 ?.replace(R.id.nav_host_fragment_content_menu, lessonFragment, "findThisFragment")
                 ?.addToBackStack("lessonsListFragment")
-                ?.commit();
-        }, { position ->
-            if (position == lessonsAdapter.itemCount - 1 && !lessonsAdapter.mustLoad) {
-                return@onItemClickListener
-            }
+                ?.commit()
+        }, {
         })
 
         searchView.setOnQueryTextListener(this)
