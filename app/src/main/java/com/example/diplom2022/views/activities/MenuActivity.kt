@@ -1,5 +1,7 @@
 package com.example.diplom2022.views.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -71,7 +73,13 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             if (item.itemId == R.id.nav_exit) {
                 auth.signOut()
                 finish()
-            } else {
+            }
+            if(item.itemId == R.id.nav_guide){
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://bi4iska.wixsite.com/it-beginner-2022/post/user-manual"))
+                startActivity(browserIntent)
+            }
+
+            else {
                 onNavDestinationSelected(item, navController)
                 drawerLayout.closeDrawers()
             }

@@ -23,10 +23,6 @@ class GuideFragment : Fragment() {
     ): View {
         _binding = FragmentGuideBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://bi4iska.wixsite.com/it-beginner-2022/post/user-manual"))
-        startActivity(browserIntent)
-
         return root
     }
 

@@ -42,7 +42,12 @@ class SettingsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        sharedPreferences = context?.let { SharedPref(it) }!!
+        sharedPreferences = context?.let {
+            SharedPref(it)
+        }!!
+
+        println(activity?.packageManager?.getActivityInfo(requireActivity().componentName, 0)
+            ?.themeResource)
 
         layoutInit()
 
@@ -59,26 +64,16 @@ class SettingsFragment : Fragment() {
 
     private fun setTheme() {
         if (switchTheme.isChecked) {
-            requireContext().setTheme(R.style.darkTheme)
+            activity?.setTheme(R.style.darkTheme)
         } else
-            requireContext().setTheme(R.style.darkTheme)
-//
-//        val am = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-//        am[AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 500] =
-//            PendingIntent.getActivity(
-//                activity, 0, requireActivity().intent, PendingIntent.FLAG_ONE_SHOT
-//                        or PendingIntent.FLAG_CANCEL_CURRENT
-//            )
-//        val i = requireActivity().baseContext.packageManager
-//            .getLaunchIntentForPackage(requireActivity().baseContext.packageName)
-//        i!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//        startActivity(i)
-        val packageManager = requireContext().packageManager
-        val intent = packageManager.getLaunchIntentForPackage(requireContext().packageName)
-        val componentName = intent!!.component
-        val mainIntent = Intent.makeRestartActivityTask(componentName)
-        requireContext().startActivity(mainIntent)
-        Runtime.getRuntime().exit(0)
+            activity?.setTheme(R.style.LightTheme_NoActionBar)
+
+//        val packageManager = requireContext().packageManager
+//        val intent = packageManager.getLaunchIntentForPackage(requireContext().packageName)
+//        val componentName = intent!!.component
+//        val mainIntent = Intent.makeRestartActivityTask(componentName)
+//        requireContext().startActivity(mainIntent)
+//        Runtime.getRuntime().exit(0)
     }
 
     private fun save() {

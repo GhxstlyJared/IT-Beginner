@@ -20,7 +20,8 @@
             android:theme="@style/LightTheme.NoActionBar"/>
         <activity
             android:name=".views.activities.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/LightTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

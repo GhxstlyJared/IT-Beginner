@@ -25,7 +25,7 @@ class LessonFragment : Fragment() {
         ApplicationViewModel.DatabaseViewModelFactory((activity?.application as ApplicationConfig).repository)
     }
     private var email: String? = null
-    private val lessonId = ApplicationConfig.selectedLessonId.value
+    private val lessonId = ApplicationConfig.selectedLessonTitle.value
     private var favorite: Favorite? = null
 
     override fun onCreateView(

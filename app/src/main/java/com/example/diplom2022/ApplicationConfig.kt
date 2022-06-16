@@ -18,10 +18,10 @@ class ApplicationConfig : Application() {
 
         private val mutableSelectedLesson = MutableLiveData<Int>()
 
-        val selectedLessonId: LiveData<Int> get() = mutableSelectedLesson
+        val selectedLessonTitle: LiveData<Int> get() = mutableSelectedLesson
 
-        fun selectLesson(id: Int) {
-            mutableSelectedLesson.value = id
+        fun selectLesson(title: Int) {
+            mutableSelectedLesson.value = title
         }
 
         val isFavoriteFirst : Boolean = true
