@@ -7,5 +7,10 @@
         <attr name="button_color" format="color"/>
         <attr name="card_color" format="color"/>
         <attr name="colorPrimary" format="color"/>
+        <attr name="nav_background" format="color"/>
+
+        <attr name="colorPrimaryDark" format="color"/>
+        <attr name="colorPrimaryVariant" format="color"/>
+        <attr name="colorAccent" format="color"/>
     </declare-styleable>
 </resources>

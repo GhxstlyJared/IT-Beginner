@@ -1,6 +1,9 @@
 package com.example.diplom2022.views.fragments
 
 import android.app.Activity.RESULT_OK
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -10,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import com.example.diplom2022.ApplicationConfig
 import com.example.diplom2022.R
 import com.example.diplom2022.databinding.FragmentSettingsBinding
 import com.example.diplom2022.models.SharedPref
@@ -18,6 +20,7 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.fragment_settings.*
 import java.io.FileNotFoundException
 import java.io.InputStream
+import java.util.*
 
 
 class SettingsFragment : Fragment() {
@@ -59,12 +62,23 @@ class SettingsFragment : Fragment() {
             requireContext().setTheme(R.style.darkTheme)
         } else
             requireContext().setTheme(R.style.darkTheme)
-//        val packageManager = requireContext().packageManager
-//        val intent = packageManager.getLaunchIntentForPackage(requireContext().packageName)
-//        val componentName = intent!!.component
-//        val mainIntent = Intent.makeRestartActivityTask(componentName)
-//        requireContext().startActivity(mainIntent)
-//        Runtime.getRuntime().exit(0)
+//
+//        val am = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+//        am[AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 500] =
+//            PendingIntent.getActivity(
+//                activity, 0, requireActivity().intent, PendingIntent.FLAG_ONE_SHOT
+//                        or PendingIntent.FLAG_CANCEL_CURRENT
+//            )
+//        val i = requireActivity().baseContext.packageManager
+//            .getLaunchIntentForPackage(requireActivity().baseContext.packageName)
+//        i!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//        startActivity(i)
+        val packageManager = requireContext().packageManager
+        val intent = packageManager.getLaunchIntentForPackage(requireContext().packageName)
+        val componentName = intent!!.component
+        val mainIntent = Intent.makeRestartActivityTask(componentName)
+        requireContext().startActivity(mainIntent)
+        Runtime.getRuntime().exit(0)
     }
 
     private fun save() {
@@ -97,7 +111,7 @@ class SettingsFragment : Fragment() {
             requireContext().setTheme(R.style.darkTheme)
             switchTheme.isChecked = true
         } else
-            requireContext().setTheme(R.style.darkTheme)
+            requireContext().setTheme(R.style.LightTheme)
         if (sharedPreferences.loadFavoriteState() == true) {
             switchFavorite.isChecked = true
         }
