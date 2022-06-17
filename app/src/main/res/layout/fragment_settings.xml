@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/background_color"
     tools:context=".views.fragments.SettingsFragment">
 
     <Button
         android:id="@+id/saveSettingsBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="?attr/button_color"
         android:text="@string/saveSettingsBtnText"
         android:textColor="@color/white"
@@ -48,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
+        android:textColor="?attr/text_color"
         android:text="@string/darkThemeSwitchText"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/view1"
@@ -60,6 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:textColor="?attr/text_color"
         android:text="Сначала избранные"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/saveSettingsBtn"

@@ -92,9 +92,9 @@ class TestFragment : Fragment() {
     }
 
     private fun initQuestion() {
-        answerBtn1.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-        answerBtn2.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-        answerBtn3.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        answerBtn1.setTextColor(questionTextView.currentTextColor)
+        answerBtn2.setTextColor(questionTextView.currentTextColor)
+        answerBtn3.setTextColor(questionTextView.currentTextColor)
         answerBtn1.text = currentQuestion.answerA
         answerBtn2.text = currentQuestion.answerB
         answerBtn3.text = currentQuestion.answerC

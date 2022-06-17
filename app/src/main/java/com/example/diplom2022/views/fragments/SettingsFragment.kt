@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.diplom2022.R
 import com.example.diplom2022.databinding.FragmentSettingsBinding
@@ -46,9 +47,6 @@ class SettingsFragment : Fragment() {
             SharedPref(it)
         }!!
 
-        println(activity?.packageManager?.getActivityInfo(requireActivity().componentName, 0)
-            ?.themeResource)
-
         layoutInit()
 
         saveSettingsBtn.setOnClickListener { save() }
@@ -80,6 +78,7 @@ class SettingsFragment : Fragment() {
         sharedPreferences.setFavoriteState(switchFavorite.isChecked)
         sharedPreferences.setDarkThemeState(switchTheme.isChecked)
         setTheme()
+        Toast.makeText(context,"Настройки успешно сохранены!",Toast.LENGTH_SHORT).show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, imageReturnedIntent: Intent?) {

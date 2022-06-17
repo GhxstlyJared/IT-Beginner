@@ -17,15 +17,18 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.diplom2022.R
 import com.example.diplom2022.databinding.ActivityMenuBinding
+import com.example.diplom2022.models.SharedPref
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 
 class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMenuBinding
+    private lateinit var sharedPreferences: SharedPref
     lateinit var  nav: DrawerLayout
 
     lateinit var auth: FirebaseAuth
@@ -34,6 +37,13 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        sharedPreferences =  SharedPref(this)
+
+        if (sharedPreferences.loadDarkThemeState() == true) {
+            this.setTheme(R.style.darkTheme)
+        } else
+            this.setTheme(R.style.LightTheme)
 
         auth = FirebaseAuth.getInstance()
 
