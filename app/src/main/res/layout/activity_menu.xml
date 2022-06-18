@@ -20,6 +20,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:itemTextColor="?attr/text_color"
         app:headerLayout="@layout/nav_header_menu"
+        android:backgroundTint="?attr/card_color"
+        app:itemBackground="?attr/card_color"
+        android:background="?attr/card_color"
         app:menu="@menu/activity_main_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.fragments.LessonsFragment">
+    android:background="?attr/background_color"
+    tools:context=".views.fragments.InfoFragment">
 
 
     <ImageView
@@ -13,7 +14,7 @@
         android:maxHeight="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:background="@color/teal_700"
+        android:background="?attr/colorPrimary"
         android:scaleType="fitCenter"
         android:src="@drawable/logo"
         android:adjustViewBounds="true"
@@ -41,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="@string/version_title"
+        android:textColor="?attr/colorAccent"
         android:textSize="20sp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@id/guideline3"

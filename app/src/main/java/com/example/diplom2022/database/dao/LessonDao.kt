@@ -18,9 +18,6 @@ interface LessonDao {
     @Query("SELECT * from lessons")
     fun getLessonsList(): LiveData<List<Lesson>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertFavourite(favorite: Favorite)
-
     @Query("DELETE FROM favorites where email = :email")
     fun deleteFavorite(email: String)
 }
