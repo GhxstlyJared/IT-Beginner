@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import com.example.diplom2022.R
 import com.example.diplom2022.databinding.ActivityLoginBinding
+import com.example.diplom2022.models.SharedPref
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -18,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -25,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
 
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var sharedPreferences: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +45,12 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+
+        sharedPreferences = SharedPref(this)
+        if (sharedPreferences.loadDarkThemeState() == true)
+            this.setTheme(R.style.darkTheme)
+        else
+            this.setTheme(R.style.LightTheme)
         val currentUser = auth.currentUser
         updateUI(currentUser)
     }

@@ -35,15 +35,20 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPreferences =  SharedPref(this)
+
+        if (sharedPreferences.loadDarkThemeState() == true)
+            this.setTheme(R.style.darkTheme)
+        else
+            this.setTheme(R.style.LightTheme)
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        sharedPreferences =  SharedPref(this)
 
-        if (sharedPreferences.loadDarkThemeState() == true) {
-            this.setTheme(R.style.darkTheme)
-        } else
-            this.setTheme(R.style.LightTheme)
+//        if (sharedPreferences.loadDarkThemeState() == true) {
+//            this.setTheme(R.style.darkTheme_NoActionBar)
+//        } else
+//            this.setTheme(R.style.LightTheme_NoActionBar)
 
         auth = FirebaseAuth.getInstance()
 
@@ -95,6 +100,15 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             false
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (sharedPreferences.loadDarkThemeState() == true)
+            this.setTheme(R.style.darkTheme)
+        else
+            this.setTheme(R.style.LightTheme)
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {

@@ -172,7 +172,6 @@ class TestFragment : Fragment() {
         }
 
         checkAnswerBtn.text = getString(R.string.nextQuestionText)
-        animationBtnNext()
     }
 
     private fun showTrueAnswer() {
@@ -183,14 +182,6 @@ class TestFragment : Fragment() {
                 radioButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.Green))
             }
         }
-    }
-
-    private fun animationBtnNext() {
-        val animAlpha = AnimationUtils.loadAnimation(
-            checkAnswerBtn.context,
-            androidx.appcompat.R.anim.abc_fade_in
-        )
-        view?.startAnimation(animAlpha)
     }
 
     private fun isAnswerCorrect(answerChecked: RadioButton): Boolean {
